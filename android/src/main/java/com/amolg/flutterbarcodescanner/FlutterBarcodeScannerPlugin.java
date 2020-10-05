@@ -5,7 +5,8 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
+import android.media.ToneGenerator;
+import android.media.AudioManager;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
@@ -152,6 +153,10 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                     try {
                         Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                         String barcodeResult = barcode.rawValue;
+                        Log.i(TAG,"Resultado: "+barcodeResult);
+                        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                        toneG.startTone(ToneGenerator.TONE_CDMA_HIGH_PBX_L, 200);
+
                         pendingResult.success(barcodeResult);
                     } catch (Exception e) {
                         pendingResult.success("-1");

@@ -64,7 +64,7 @@ import java.io.IOException;
  * size, and ID of each barcode.
  */
 public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener, View.OnClickListener {
-
+    private static final String TAG = "BarcodeCaptureActivity";
     // intent request code to handle updating play services if needed.
     private static final int RC_HANDLE_GMS = 9001;
 
@@ -195,7 +195,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
         Context context = getApplicationContext();
-
+        Log.i(TAG,"Entrando a método...");
         // A barcode detector is created to track barcodes.  An associated multi-processor instance
         // is set to receive the barcode detection results, track the barcodes, and maintain
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
